@@ -208,7 +208,7 @@ export default function App() {
 
   try {
     const response = await fetch(
-      'http://localhost:5000/transactions',
+      `${API_URL}/transactions`,
       {
         method: 'POST',
         headers: {
@@ -224,7 +224,7 @@ export default function App() {
 
     // Reload transactions from database
     const refreshed = await fetch(
-      'http://localhost:5000/transactions'
+      `${API_URL}/transactions`
     );
 
     const data = await refreshed.json();
@@ -249,7 +249,7 @@ export default function App() {
   const handleDeleteRecord = async (id: string) => {
   try {
     const response = await fetch(
-      `http://localhost:5000/transactions/${id}`,
+      `${API_URL}/transactions/${id}`,
       {
         method: 'DELETE'
       }
@@ -261,7 +261,7 @@ export default function App() {
 
     // Reload from database
     const refreshed = await fetch(
-      'http://localhost:5000/transactions'
+      `${API_URL}/transactions`
     );
 
     const data = await refreshed.json();
