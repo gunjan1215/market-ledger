@@ -27,16 +27,29 @@ app.get('/transactions', async (_, res) => {
 });
 
 app.post('/transactions', async (req, res) => {
-  const { id, type, amount, date, note } = req.body;
+  try {
+    console.log('Incoming transaction:', req.body);
 
-  await pool.query(
-    `INSERT INTO transactions
-    (id,type,amount,date,note)
-    VALUES ($1,$2,$3,$4,$5)`,
-    [id, type, amount, date, note]
-  );
+    const { id, type, amount, date, note } = req.body;
 
-  res.json({ success: true });
+    await pool.query(
+      `INSERT INTO transactions
+      (id,type,amount,date,note)
+      VALUES ($1,$2,$3,$4,$5)`,
+      [id, type, amount, date, note]
+    );
+
+    console.log('Transaction saved');
+
+    res.json({ success: true });
+
+  } catch (err) {
+    console.error('POST ERROR:', err);
+
+    res.status(500).json({
+      error: String(err)
+    });
+  }
 });
 
 app.delete('/transactions/:id', async (req, res) => {
