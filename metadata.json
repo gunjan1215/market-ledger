@@ -1,0 +1,6 @@
+{
+  "name": "Market Ledger",
+  "description": "An interactive, high-contrast trading performance ledger and asset ledger tracking profits, losses, capital, and withdrawals with robust metrics visualization.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
