@@ -4,7 +4,18 @@ import { pool } from './db';
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      'https://market-ledger-one.vercel.app'
+    ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type']
+  })
+);
+
+app.options('*', cors());
+
 app.use(express.json());
 
 app.get('/transactions', async (_, res) => {
